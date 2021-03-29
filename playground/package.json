@@ -1,13 +1,13 @@
 {
-  "name": "param.macro-playground",
+  "name": "one-liner.macro-playground",
   "version": "1.0.0",
-  "description": "Live coding playground for param.macro",
+  "description": "A fork of param.macro-playground for one-liner.macro.",
   "private": true,
   "author": "Bo Lingen <lingenbw@gmail.com> (https://github.com/citycide)",
   "license": "MIT",
-  "repository": "https://github.com/citycide/param.macro",
-  "homepage": "https://github.com/citycide/param.macro/tree/master/docs",
-  "bugs": "https://github.com/citycide/param.macro/issues",
+  "repository": "https://github.com/blmage/one-liner.macro",
+  "homepage": "https://github.com/blmage/one-liner.macro",
+  "bugs": "https://github.com/blmage/one-liner.macro/issues",
   "engines": {
     "node": ">=6"
   },
@@ -32,7 +32,7 @@
     "@citycide/babel-standalone": "^7.3.1",
     "highlight.js": "^9.13.1",
     "lodash.debounce": "^4.0.8",
-    "param.macro": "file:..",
+    "one-liner.macro": "file:..",
     "prettier": "^1.16.1",
     "pretty-format": "^21.2.1",
     "split.js": "^1.5.9",

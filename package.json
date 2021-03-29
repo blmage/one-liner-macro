@@ -1,12 +1,12 @@
 {
-  "name": "param.macro",
+  "name": "one-liner.macro",
   "version": "3.2.1",
-  "description": "Partial application syntax and lambda parameters for JavaScript, inspired by Scala's `_` & Kotlin's `it`",
+  "description": "A fork of citycide/param.macro, including support for indexed placeholders via symbols `_1` to `_9`.",
   "author": "Bo Lingen <lingenbw@gmail.com> (https://github.com/citycide)",
   "license": "MIT",
-  "repository": "https://github.com/citycide/param.macro",
-  "homepage": "https://github.com/citycide/param.macro/tree/master/docs",
-  "bugs": "https://github.com/citycide/param.macro/issues",
+  "repository": "https://github.com/blmage/one-liner.macro",
+  "homepage": "https://github.com/blmage/one-liner.macro",
+  "bugs": "https://github.com/blmage/one-liner.macro/issues",
   "main": "./dist/index.js",
   "engines": {
     "node": ">=6"

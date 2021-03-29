@@ -1,4 +1,4 @@
-import { _, it } from 'param.macro'
+import { _, it } from 'one-liner.macro'
 
 import { availablePlugins, transform } from '@citycide/babel-standalone/dist/babel.min'
 import prettier from 'prettier/standalone'

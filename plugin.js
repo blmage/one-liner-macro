@@ -60,9 +60,23 @@ const applyPlugin = (babel, path, imports) => {
 
   if (!hasReferences) return
 
+  const indexedReferences = {}
+  let hasIndexedReferences = false
+
+  for (let n = 1; n <= 9; n++) {
+    if (references[`_${n}`]) {
+      hasIndexedReferences = true
+      indexedReferences[n] = references[`_${n}`]
+    }
+  }
+
   if (references.it) transformImplicitParams(babel.types, references.it)
   if (references.default) transformImplicitParams(babel.types, references.default)
-  if (references._) transformPlaceholders(babel.types, references._)
+
+  if (references._ || hasIndexedReferences) {
+    transformPlaceholders(babel.types, references._ || [], indexedReferences)
+  }
+
   if (references.lift) transformLift(babel.types, references.lift)
 }
 

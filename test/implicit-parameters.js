@@ -5,7 +5,7 @@ import * as macros from './helpers/macros'
 test(
   'it: unused',
   [macros.babel7, macros.babel6],
-  `import { it } from 'param.macro'`,
+  `import { it } from 'one-liner.macro'`,
   ``
 )
 
@@ -14,7 +14,7 @@ test(
   [macros.babel7, macros.babel6],
   `
     'test'
-    import it from 'param.macro'
+    import it from 'one-liner.macro'
     const identity = it
     t.is(identity('hello'), 'hello')
   `,
@@ -31,7 +31,7 @@ test(
   [macros.babel7, macros.babel6],
   `
     'test'
-    import { it as IT } from 'param.macro'
+    import { it as IT } from 'one-liner.macro'
     const array = ['1', '2', '3']
     const result = array.map(IT + ' sheckles')
     t.deepEqual(result, ['1 sheckles', '2 sheckles', '3 sheckles'])
@@ -50,7 +50,7 @@ test(
   [macros.babel7, macros.babel6],
   `
     'test'
-    import { it } from 'param.macro'
+    import { it } from 'one-liner.macro'
     const arr = [1, 2, 3].map(it * 2)
     t.deepEqual(arr, [2, 4, 6])
   `,
@@ -66,7 +66,7 @@ test(
   'it: supports nested properties and methods',
   [macros.babel7, macros.babel6],
   `
-    import { it } from 'param.macro'
+    import { it } from 'one-liner.macro'
     const arr1 = array.map(it.foo.bar)
     const arr2 = array.map(it.foo.baz())
   `,
@@ -85,7 +85,7 @@ test(
   [macros.babel7, macros.babel6],
   `
     'test'
-    import { it } from 'param.macro'
+    import { it } from 'one-liner.macro'
     const arr = [1, 2, 3].map(it)
     t.deepEqual(arr, [1, 2, 3])
   `,
@@ -101,7 +101,7 @@ test(
   'it: simple assignment is the identity function',
   [macros.babel7, macros.babel6],
   `
-    import { it } from 'param.macro'
+    import { it } from 'one-liner.macro'
     const identity = it
   `,
   `
@@ -115,7 +115,7 @@ test(
   'it: multiple uses always refer to the first parameter',
   [macros.babel7, macros.babel6],
   `
-    import { it } from 'param.macro'
+    import { it } from 'one-liner.macro'
     fn(it + it + it * it)
   `,
   `
@@ -129,7 +129,7 @@ test(
   'it: supports default parameters',
   [macros.babel7, macros.babel6],
   `
-    import { it } from 'param.macro'
+    import { it } from 'one-liner.macro'
     const fn = (a = it + it) => {}
   `,
   `
@@ -143,7 +143,7 @@ test(
   'it: is transformed in place within a template expression',
   [macros.babel7, macros.babel6],
   `
-    import it from 'param.macro'
+    import it from 'one-liner.macro'
     const a = style\`
       font-size: 16px;
       color: \${it.color};
@@ -163,7 +163,7 @@ test(
   'it: wraps template literals unlike tagged template expressions',
   [macros.babel7, macros.babel6],
   `
-    import it from 'param.macro'
+    import it from 'one-liner.macro'
     const a = \`
       font-size: 16px;
       color: \${it.color};
@@ -183,7 +183,7 @@ test(
   'it: fails when used outside of a valid expression (pt. 1)',
   [macros.babel7Failure],
   `
-    import it from 'param.macro'
+    import it from 'one-liner.macro'
     it
   `,
   { message: /Implicit parameters must be used/ }
@@ -193,7 +193,7 @@ test(
   'it: fails when used outside of a valid expression (pt. 2)',
   [macros.babel7Failure],
   `
-    import it from 'param.macro'
+    import it from 'one-liner.macro'
     it.property
   `,
   { message: /Implicit parameters must be used/ }

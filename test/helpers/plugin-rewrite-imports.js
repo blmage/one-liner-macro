@@ -8,7 +8,7 @@ const unixPath = path =>
 const macroSource = unixPath(join(process.cwd(), rewrittenImportSource))
 
 const isParamMacroString = path =>
-  path.isStringLiteral({ value: 'param.macro' })
+  path.isStringLiteral({ value: 'one-liner.macro' })
 
 const isCalleeRequire = path =>
   path.get('callee').isIdentifier({ name: 'require' })

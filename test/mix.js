@@ -3,11 +3,11 @@ import test from 'ava'
 import * as macros from './helpers/macros'
 
 test(
-  '_, it: interoperates with pipeline operator',
+  '_, it: interoperates with pipeline operator (pt. 1)',
   [macros.babel7],
   `
     'test'
-    import { _, it } from 'param.macro'
+    import { _, it } from 'one-liner.macro'
 
     const add = _ + _
     const tenPlusString =
@@ -38,11 +38,11 @@ test(
 )
 
 test(
-  '_, it: interoperates with pipeline operator part 2',
+  '_, it: interoperates with pipeline operator (pt. 2)',
   [macros.babel7],
   `
     'test'
-    import { _, it } from 'param.macro'
+    import { _, it } from 'one-liner.macro'
 
     const heroes = [
       { name: 'bob' },
@@ -79,10 +79,86 @@ test(
 )
 
 test(
+  '_n, it: interoperates with pipeline operator (pt. 1)',
+  [macros.babel7],
+  `
+    'test'
+    import { _1, _2, it } from 'one-liner.macro'
+
+    const add = _2 + _1
+    const tenPlusString =
+      it
+      |> parseInt(_1, 10)
+      |> add(10, _1)
+      |> String
+
+    tenPlusString('10') |> t.is(_1, '20')
+  `,
+  `
+    const add = (_arg, _arg5) => {
+      return _arg5 + _arg;
+    };
+
+    const tenPlusString = _it => {
+      return _it |> ((_arg2) => {
+        return parseInt(_arg2, 10);
+      }) |> ((_arg3) => {
+        return add(10, _arg3);
+      }) |> String;
+    };
+
+    tenPlusString('10') |> ((_arg4) => {
+      return t.is(_arg4, '20');
+    });
+  `
+)
+
+test(
+  '_n, it: interoperates with pipeline operator (pt. 2)',
+  [macros.babel7],
+  `
+    'test'
+    import { _1, it } from 'one-liner.macro'
+
+    const heroes = [
+      { name: 'bob' },
+      { name: 'joe' },
+      { name: 'ann' }
+    ]
+
+    heroes.map(it.name)
+    |> _1[0].split('')
+    |> it.join(', ')
+    |> \`-- \${_1} --\`
+    |> t.is(_1, '-- b, o, b --')
+  `,
+  `
+    const heroes = [{
+      name: 'bob'
+    }, {
+      name: 'joe'
+    }, {
+      name: 'ann'
+    }];
+    heroes.map(_it => {
+      return _it.name;
+    }) |> ((_arg) => {
+      return _arg[0].split('');
+    }) |> (_it2 => {
+      return _it2.join(', ');
+    }) |> ((_arg2) => {
+      return \`-- \${_arg2} --\`;
+    }) |> ((_arg3) => {
+      return t.is(_arg3, '-- b, o, b --');
+    });
+  `
+)
+
+test(
   '_, it: assignment expressions are applied similarly to declarations',
   [macros.babel7, macros.babel6],
   `
-    import { _, it } from 'param.macro'
+    import { _, it } from 'one-liner.macro'
     const bar = {}
     bar.greet = \`Hello \${_}\`
     const result = bar.greet('world')
@@ -105,7 +181,7 @@ test(
   [macros.babel7],
   `
     'test'
-    import { _, it } from 'param.macro'
+    import { _, it } from 'one-liner.macro'
 
     const foo = [
       { bar: true },

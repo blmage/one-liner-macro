@@ -9,7 +9,20 @@ export default createMacro(({ references, state, babel: { types: t } }) => {
 
   if (references.it) transformImplicitParams(t, references.it)
   if (references.default) transformImplicitParams(t, references.default)
-  if (references._) transformPlaceholders(t, references._)
+
+  const indexedReferences = {}
+  let hasIndexedReferences = false
+
+  for (let n = 1; n <= 9; n++) {
+    if (references[`_${n}`]) {
+      hasIndexedReferences = true
+      indexedReferences[n] = references[`_${n}`]
+    }
+  }
+
+  if (references._ || hasIndexedReferences) {
+    transformPlaceholders(t, references._ || [], indexedReferences)
+  }
 
   // `lift` needs to be transformed after `_` so placeholders
   // can use its presence to stop upward traversal
