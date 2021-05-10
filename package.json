@@ -34,7 +34,8 @@
     "setup": "trash macro && cpy \"dist/\" \"macro/\"",
     "pretest": "npm run build && npm run setup",
     "test": "ava",
-    "prepublishOnly": "npm test"
+    "prepublishOnly": "npm test",
+    "prepare": "npm run-script build"
   },
   "dependencies": {
     "babel-plugin-macros": "^2.6.1"
