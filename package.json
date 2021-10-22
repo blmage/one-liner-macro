@@ -1,6 +1,6 @@
 {
   "name": "one-liner.macro",
-  "version": "3.2.2-patch",
+  "version": "3.3.0",
   "description": "A fork of citycide/param.macro, including support for indexed placeholders via symbols `_1` to `_9`.",
   "author": "Bo Lingen <lingenbw@gmail.com> (https://github.com/citycide)",
   "license": "MIT",
